@@ -1,0 +1,15 @@
+# Data never goes into GitHub; it lives in the shared Drive
+data/**
+!data/**/
+!data/**/.gitkeep
+*.csv
+*.parquet
+*.zip
+
+# Secrets
+kaggle.json
+.env
+
+# Python and Jupyter
+__pycache__/
+.ipynb_checkpoints/
