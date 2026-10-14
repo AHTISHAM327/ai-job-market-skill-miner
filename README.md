@@ -34,4 +34,4 @@ Open [`notebooks/01_data_start.ipynb`](notebooks/01_data_start.ipynb) in Colab a
 - `data/`: folder layout only; data files are blocked by `.gitignore`
 
 ## Dates
-M0 proposal 14 Oct · own pace until 25 Oct · hard deadlines from 26 Oct · internal finish 10 Dec
+M0 proposal 14 Oct · M1 21 Oct · M2 28 Oct · internal finish 10 Dec
