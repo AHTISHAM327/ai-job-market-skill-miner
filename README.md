@@ -20,8 +20,10 @@ https://www.kaggle.com/datasets/arshkon/linkedin-job-postings
 📁 **Team Google Drive workspace:** [Access Google Drive Folder](https://drive.google.com/drive/folders/181-Vo21XPKPlllpRPqDeAvGqK6fnKV3Y?usp=share_link)
 
 ## How to start
-Open [`notebooks/01_data_start.ipynb`](notebooks/01_data_start.ipynb) in Colab and choose Runtime → Run all. It downloads the pinned version 13 and prints the file list and first checks.
+1. In Google Drive, open "Shared with me", right-click the team folder, and choose Organize → Add shortcut → My Drive (once per person).
+2. [Open the loader in Colab](https://colab.research.google.com/github/AHTISHAM327/ai-job-market-skill-miner/blob/main/ahtisham/ahtisham_00_load_drive.ipynb) and choose Runtime → Run all. It loads the pinned version 13 from the team Drive copy and prints the first checks.
 
+`notebooks/01_data_start.ipynb` is only the Kaggle backup. It downloads version 13 again from Kaggle and needs a Kaggle key in Colab Secrets. Use it only if the Drive copy is damaged.
 ## Rules
 - No raw data, processed data, passwords or Kaggle keys in this repo. Data lives in the shared Drive (`data/raw`, `data/processed`).
 - Raw data is never edited; cleaned data is saved as a new numbered version (v001, v002, ...).
