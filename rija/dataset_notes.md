@@ -183,7 +183,7 @@ Approximate pattern. Exact counts come from the script in Section 7.
 | Salary fields | `min_salary`, `med_salary`, `max_salary`, `pay_period`, `compensation_type`, `normalized_salary` | Very high (roughly 60 - 90%) | Most employers do not publish pay |
 | Engagement | `applies`, `views` | Moderate to high | Depends on what the scraper captured |
 | Lifecycle | `expiry`, `closed_time` | Varies; `closed_time` is mostly null | Many postings were still open at scrape time |
-| Optional text/location | `skills_desc`, `zip_code`, `fips`, `posting_domain`, `application_url` | Moderate to high | Optional or not applicable (e.g. onsite apply) |
+| Optional text/location | `skills_desc`, `zip_code`, `fips`, `posting_domain`, `application_url` | Moderate to high; skills_desc is about 98% empty | Optional or not applicable (e.g. onsite apply) |
 | Flags | `remote_allowed` | High | Only set when the poster specified it |
 
 **Takeaway:** missing data is mostly structural (optional fields), so salary analysis should be done on the subset of jobs that actually disclose pay.
