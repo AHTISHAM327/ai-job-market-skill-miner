@@ -1,0 +1,8 @@
+cluster,name,kind,postings,top_words,top_titles
+3,Machine learning / AI engineering,Job family,251,"ai, machine learning, ml, models, algorithms","data scientist; senior machine learning engineer; machine learning engineer"
+4,Data / BI analyst,Job family,316,"analyst, reporting, analysis, insights, bi, dashboards","data analyst; senior data analyst; business intelligence analyst"
+5,Big-data engineering,Job family,106,"aws, spark, big data, hadoop, cloud","data engineer; senior data engineer; big data engineer"
+6,Cloud data engineering,Job family,206,"azure, cloud, pipelines, etl, bi","data engineer; senior data engineer; business intelligence developer"
+2,Internship ads (repeated),Doubtful,155,"internship, day, data glacier, statistics, analytics","data analyst; data scientist"
+0,Legal and benefits text,Not a job family,472,"status, benefits, employment, disability, equal, protected","data scientist; data analyst; data engineer"
+1,Company and pay text,Not a job family,72,"amazon, tiktok, compensation, total, year, position","senior data engineer; data engineer"

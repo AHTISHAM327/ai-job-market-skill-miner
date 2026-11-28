@@ -1,0 +1,43 @@
+# P08 theme: based on the official Streamlit "nord" template, colors from the team's notebook palette
+[theme]
+base = "dark"
+primaryColor = "#b4a7d6"
+backgroundColor = "#16171c"
+secondaryBackgroundColor = "#1f2128"
+codeBackgroundColor = "#1f2128"
+textColor = "#e3e4e9"
+linkColor = "#b4a7d6"
+borderColor = "#353842"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "8px"
+buttonRadius = "8px"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+codeFontSize = "0.875rem"
+codeTextColor = "#d6d8de"
+baseFontSize = 15
+baseFontWeight = 400
+headingFontSizes = ["30px", "22px", "18px", "16px", "14px", "12px"]
+headingFontWeights = [700, 600, 600, 600, 600, 600]
+linkUnderline = false
+paddingTop = "1.5rem"
+paddingBottom = "3rem"
+chartCategoricalColors = ["#b4a7d6", "#e6b89c", "#a9bfa5", "#d9a5b3", "#9fb3c8", "#d9cfa3", "#c4b5a0", "#b0a8c8"]
+chartSequentialColors = ["#2a2c38", "#3b3d52", "#4d4f6d", "#606388", "#7677a2", "#8d8ab8", "#a39ccb", "#b4a7d6", "#c7bde3", "#dad3ef"]
+blueColor = "#9fb3c8"
+greenColor = "#a9bfa5"
+yellowColor = "#d9cfa3"
+orangeColor = "#e6b89c"
+redColor = "#d9a5b3"
+violetColor = "#b4a7d6"
+grayColor = "#8b8f9a"
+dataframeBorderColor = "#353842"
+dataframeHeaderBackgroundColor = "#1f2128"
+dataframeHeaderTextColor = "#e3e4e9"
+
+[theme.sidebar]
+backgroundColor = "#1b1d24"
+secondaryBackgroundColor = "#252830"
+codeBackgroundColor = "#252830"
+borderColor = "#353842"
