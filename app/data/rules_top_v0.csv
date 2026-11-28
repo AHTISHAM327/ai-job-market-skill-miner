@@ -1,0 +1,16 @@
+if,then,support,confidence,lift
+tensorflow,pytorch,0.076,0.795,7.988
+pytorch,deep learning,0.064,0.643,5.050
+tensorflow,deep learning,0.060,0.629,4.939
+llm,generative ai,0.055,0.547,4.906
+hadoop,big data,0.051,0.661,4.700
+hadoop,spark,0.058,0.760,4.225
+nlp,deep learning,0.063,0.508,3.986
+scala,spark,0.063,0.658,3.655
+gcp,azure,0.080,0.649,3.274
+power bi,tableau,0.085,0.523,3.201
+big data,spark,0.078,0.554,3.079
+gcp,aws,0.086,0.696,2.936
+nosql,aws,0.056,0.657,2.771
+gcp,cloud,0.115,0.933,2.682
+tableau,data visualization,0.106,0.651,2.621
