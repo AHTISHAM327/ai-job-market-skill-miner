@@ -31,13 +31,10 @@ postings.csv columns (31): job_id, company_name, title, description, max_salary,
 First checks (12 Oct 2026, Colab, version 13): 0 duplicate job_id; description missing in 7 rows; pay columns filled for 36073 postings (29.1%): yearly 20628, hourly 14741, monthly 518, weekly 177, biweekly 9; normalized_salary filled for the same 36073.
 
 ## Sharing decision
-- Can we keep a copy in our Drive? Yes. CC BY-SA 4.0 allows it with credit to the dataset authors; any data we share keeps CC BY-SA 4.0.(Confirmed by Quratulain on 28 Nov 2026.)
+- Can we keep a copy in our Drive? Yes. CC BY-SA 4.0 allows it with credit to the dataset authors; any data we share keeps CC BY-SA 4.0. (Confirmed by Quratulain on 28 Nov 2026.)
 
 ## Current accepted version
-- none yet
--  The page shows version 13 and license CC BY-SA 4.0. Our pinned copy stays version 13.
-
-(Confirmed by Quratulain on 28 Nov 2026.)
+- none yet. The M2 and M3 notebooks use the quick files below (v0). The first accepted version (v001) comes in M4.
 
 ## Quick files (working copies, not accepted versions)
 | File in data/processed/ | Made by | Notebook | Rows | Columns | Last saved |
