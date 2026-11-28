@@ -10,8 +10,7 @@
 
 ## Version pinned in loader
 - Version: 13 (556.5 MB) (Ahtisham, 12 Oct 2026)
-- Checked against Kaggle by Quratulain:
-
+- Checked against Kaggle by Quratulain: 28 Nov 2026. The page shows version 13 and license CC BY-SA 4.0. Our pinned copy stays version 13.
 ## Files
 | File | Rows | Columns | What it holds |
 | --- | --- | --- | --- |
@@ -32,11 +31,21 @@ postings.csv columns (31): job_id, company_name, title, description, max_salary,
 First checks (12 Oct 2026, Colab, version 13): 0 duplicate job_id; description missing in 7 rows; pay columns filled for 36073 postings (29.1%): yearly 20628, hourly 14741, monthly 518, weekly 177, biweekly 9; normalized_salary filled for the same 36073.
 
 ## Sharing decision
-- Can we keep a copy in our Drive? Yes. CC BY-SA 4.0 allows it with credit to the dataset authors; any data we share keeps CC BY-SA 4.0. (To be confirmed by Quratulain against the Kaggle page.)
+- Can we keep a copy in our Drive? Yes. CC BY-SA 4.0 allows it with credit to the dataset authors; any data we share keeps CC BY-SA 4.0.(Confirmed by Quratulain on 28 Nov 2026.)
 
 ## Current accepted version
 - none yet
+-  The page shows version 13 and license CC BY-SA 4.0. Our pinned copy stays version 13.
 
+(Confirmed by Quratulain on 28 Nov 2026.)
+
+## Quick files (working copies, not accepted versions)
+| File in data/processed/ | Made by | Notebook | Rows | Columns | Last saved |
+| --- | --- | --- | --- | --- | --- |
+| skills_quick_v0.csv | Quratulain | quratulaain/quratulain_m2_rules (1).ipynb | 1578 | 57 (job_id + 56 skills) | 24 Nov 2026 |
+| clusters_quick_v0.csv | Rija | rija/rija002_m2_clusters (1).ipynb | 1578 | 3 (job_id, title, cluster) | 17 Nov 2026 |
+
+The M3 model (ahtisham/ahtisham_m3_skills_model.ipynb) reads both files.
 ## Version history
 | Version | Date | Made by | Notebook | Rows | What changed |
 | --- | --- | --- | --- | --- | --- |
