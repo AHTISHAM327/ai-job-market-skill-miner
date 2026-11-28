@@ -44,7 +44,9 @@ sweep = load("cluster_k_sweep_v0.csv")
 
 top_rule = rules.iloc[0]
 best = scores.loc[scores["macro_f1"].idxmax()]
-base = scores[(scores["model"] == "Logistic regression") & (scores["features"] == "Job details only")].iloc[0]
+models_only = scores[scores["model"] != "Always guess one band"]
+best_by_clues = models_only.groupby("features")["macro_f1"].max()
+guess = scores[scores["model"] == "Always guess one band"]["macro_f1"].iloc[0]
 families = clusters[clusters["kind"] == "Job family"]
 
 # ---------------------------------------------------------------- header
@@ -56,7 +58,7 @@ with st.container(horizontal=True):
     st.metric("Most asked-for skill", name(skills.iloc[0]["skill"]), f"{skills.iloc[0]['share']:.0%} of ads", delta_arrow="off", border=True)
     st.metric("Strongest skill pair", f"{top_rule['lift']:.0f}× more than chance", f"{name(top_rule['if'])} + {name(top_rule['then'])}", delta_arrow="off", border=True)
     st.metric("Job families found", f"{len(families)}", f"of 7 groups", delta_arrow="off", border=True)
-    st.metric("Pay-band model score", f"{best['macro_f1']:.2f}", f"{best['macro_f1'] - base['macro_f1']:+.2f} with skills + family", help="Macro-F1 (0 to 1). Always guessing one band scores 0.17.", border=True)
+    st.metric("Pay-band model score", f"{best['macro_f1']:.2f}", f"{best['macro_f1'] - best_by_clues['Job details only']:+.2f} with skills + family", help="Macro-F1 (0 to 1). Always guessing one band scores 0.17.", border=True)
 
 tab_skills, tab_pay, tab_families = st.tabs([
     ":material/school: Skills",
@@ -112,15 +114,32 @@ with tab_pay:
     left, right = st.columns([3, 2])
     with left:
         with st.container(border=True):
-            st.subheader("Can we guess the pay band from the ad?", icon=":material/model_training:")
-            st.caption("Score = macro-F1 over 5-fold cross-validation (0 to 1). Always guessing one band scores 0.17.")
+            st.subheader("Do skills tell us the pay?", icon=":material/model_training:")
             order = ["Job details only", "+ skills", "+ job family", "+ skills + job family"]
-            short = {"Job details only": "Job details", "+ skills": "+ skills", "+ job family": "+ family", "+ skills + job family": "+ both"}
-            comp = scores[scores["model"] != "Always guess one band"].copy()
-            comp["Clues"] = pd.Categorical(comp["features"].map(short), [short[o] for o in order], ordered=True)
-            comp = comp.rename(columns={"model": "Model"}).sort_values("Clues")
-            st.bar_chart(comp, x="Clues", y="macro_f1", color="Model", stack=False, horizontal=True, sort=False, x_label="", y_label="Score (macro-F1)", height=360,
-                         alt="Model scores by clue set; random forest with skills and job family is best at 0.595")
+            short = {"Job details only": "Job details only", "+ skills": "Job details + skills", "+ job family": "Job details + job family", "+ skills + job family": "Job details + skills + job family"}
+            steps = pd.DataFrame({
+                "Clues": ["Always guess one band"] + [short[o] for o in order],
+                "Score": [guess] + [best_by_clues[o] for o in order],
+                "Kind": ["No model"] + ["Best model"] * len(order),
+            })
+            st.markdown(
+                f"**Job details alone (level, work type, remote) score {best_by_clues['Job details only']:.2f}. "
+                f"Add the skills in the ad and the score rises to {best_by_clues['+ skills']:.2f}.** "
+                f"Always guessing one band scores {guess:.2f}."
+            )
+            steps["Label"] = steps["Score"].map(lambda v: f"{v:.3f}")
+            base_chart = alt.Chart(steps).encode(
+                y=alt.Y("Clues:N", sort=None, title=None, axis=alt.Axis(labelLimit=320)),
+                x=alt.X("Score:Q", title="Score (macro-F1, 0 to 1)", scale=alt.Scale(domain=[0, 0.7])),
+            )
+            bars = base_chart.mark_bar(cornerRadiusEnd=3).encode(
+                color=alt.Color("Kind:N", legend=None, sort=["Best model", "No model"]),
+                tooltip=["Clues", "Score"],
+            )
+            labels = base_chart.mark_text(align="left", dx=6, fontSize=13, color="#e3e4e9").encode(text="Label:N")
+            st.altair_chart((bars + labels).properties(height=240),
+                            alt="Score with each set of clues: guessing 0.17, job details 0.52, with skills 0.59, with skills and job family 0.595")
+            st.caption("Score = macro-F1 over 5-fold cross-validation, best of 3 models per row. So the skills an ad asks for say a lot about its pay.")
     with right:
         with st.container(border=True):
             st.subheader("How well each band is guessed", icon=":material/target:")
@@ -135,6 +154,12 @@ with tab_pay:
     with st.expander("Exact numbers (salary model)", icon=":material/table_chart:"):
         st.caption("Job details = experience level, work type, remote. Random forest: 300 trees. Train score far above test score means the forest memorises (to tune in M4). "
                    "Label-shuffle check: 0.332 ± 0.041, the same as random guessing, so nothing leaks the answer.")
+        comp = models_only.copy()
+        comp["Clues"] = pd.Categorical(comp["features"].map({"Job details only": "Job details", "+ skills": "+ skills", "+ job family": "+ family", "+ skills + job family": "+ both"}),
+                                       ["Job details", "+ skills", "+ family", "+ both"], ordered=True)
+        comp = comp.rename(columns={"model": "Model"}).sort_values("Clues")
+        st.bar_chart(comp, x="Clues", y="macro_f1", color="Model", stack=False, horizontal=True, sort=False, x_label="", y_label="Score (macro-F1)", height=360,
+                     alt="Model scores by clue set; random forest with skills and job family is best at 0.595")
         wide = scores.pivot(index="model", columns="features", values="macro_f1")[order]
         st.dataframe(wide, alt="Macro-F1 of every model and clue set")
         st.dataframe(report.rename(columns={"band": "Band", "precision": "Precision", "recall": "Recall", "f1": "F1", "postings": "Ads"}), hide_index=True,
